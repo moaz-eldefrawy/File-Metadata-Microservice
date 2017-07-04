@@ -5,7 +5,8 @@
 const express = require('express'),
       fs = require('fs'),
       formidable = require('formidable'),            
-      fileUpload = require('express-fileupload');
+      fileUpload = require('express-fileupload'),
+      path = require('path');
 var app = express();
 
 app.use(fileUpload());
@@ -22,10 +23,13 @@ app.post('/upload', function(req ,res){
   var fileName = req.files.sampleFile.name,
       type = req.files.sampleFile.mimetype,
       data = req.files.sampleFile.data;
-  fs.writeFile('assets/message.js', 'Hello Node.js', (err) => {
-  if (err) throw err;
-  console.log('The file has been saved!');  
-    res.end(fileName + type);
+  var sampleFile = req.files.sampleFile;
+  var place = path.join (__dirname , "assets");
+ sampleFile.mv( place , function(err) {
+    if (err)
+      return res.status(500).send(err);
+ 
+    res.send('File uploaded!');
   });
   //res.end(fileName + type );
 })
