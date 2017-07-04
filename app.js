@@ -14,10 +14,11 @@ app.post('/upload', function(req, res) {
     var form = new formidable.IncomingForm();
     form.parse(req, function(err, fields, files) {
         // `file` is the name of the <input> field of type `file`
-        var file_size = files.file.size;
+        var file_size = files.sampleFile.size;
     
         res.end(file_size);
     });
+  res.end(123);
 });
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
@@ -27,19 +28,9 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.post('/upload', function(req ,res){
-  var file = req.files.sampleFile;
-  //var stats = fs.statSync(file);
-  //var fileSize = stats.size;
-  res.writeHead(200, {'Content-Type': 'application/JSON'});
-  console.log(req.headers);
-  res.end();
-})
-
+ 
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
-});
-rt);
 });
