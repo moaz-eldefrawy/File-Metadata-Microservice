@@ -19,9 +19,11 @@ app.get("/", function (request, response) {
 
 app.post('/upload', function(req ,res){
   var file = req.files.sampleFile;
-  var stats = fs.statSync(file);
-  var fileSize = stats.size;
-  res.end(fileSize);
+  //var stats = fs.statSync(file);
+  //var fileSize = stats.size;
+  res.writeHead(200, {'Content-Type': 'application/JSON'});
+  console.log(req.headers);
+  res.end();
 })
 
 
