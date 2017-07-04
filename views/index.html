@@ -1,0 +1,29 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!-- You might want to try something fancier: -->
+<!-- html/nunjucks docs: https://mozilla.github.io/nunjucks/ -->
+<!-- pug: https://pugjs.org/ -->
+<!-- haml: http://haml.info/ -->
+<!-- hbs(handlebars): http://handlebarsjs.com/ -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to Glitch!</title>
+    <meta name="description" content="A cool thing made with Glitch">
+  </head>
+  <body>
+    
+    <form ref="uploadForm"
+          id="uploadForm"
+          method="POST"
+          action="https://recondite-rabbit.glitch.me/upload"
+          enctype="multipart/form-data">
+          
+      <input type="file" name="sampleFile">
+      <input type="submit" value="Upload!">
+    </form>
+
+  </body>
+</html>
