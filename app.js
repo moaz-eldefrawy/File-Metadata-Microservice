@@ -24,6 +24,8 @@ app.post('/upload', function(req ,res){
       type = req.files.sampleFile.mimetype,
       data = req.files.sampleFile.data;
   var sampleFile = req.files.sampleFile;
+  res.writeHead(200, {'Content-Type': 'application/json'}) ;
+    
   var place = path.join (__dirname , fileName );
  sampleFile.mv(  place , function(err) {
     if (err)
@@ -31,9 +33,7 @@ app.post('/upload', function(req ,res){
    
     const stats = fs.statSync(fileName);
     const fileSizeInBytes = stats.size;
-    res.writeHead(200, {'Contet-Type': 'application/json'}) ;
-   var obj = {}; obj.size = fileSizeInBytes;
-    res.end(obj);
+    res.write(JSON.stringify({size: fileSizeInBytes}));
   });
   
   //res.end(fileName + type );
