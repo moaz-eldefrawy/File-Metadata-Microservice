@@ -19,10 +19,15 @@ app.get("/", function (request, response) {
 });
 
 app.post('/upload', function(req ,res){
-  var file = req.files.sampleFile.name,
+  var fileName = req.files.sampleFile.name,
       type = req.files.sampleFile.mimetype,
       data = req.files.sampleFile.data;
-  res.end(file + type );
+  fs.writeFile('assets/message.js', 'Hello Node.js', (err) => {
+  if (err) throw err;
+  console.log('The file has been saved!');  
+    res.end(fileName + type);
+  });
+  //res.end(fileName + type );
 })
  
 
