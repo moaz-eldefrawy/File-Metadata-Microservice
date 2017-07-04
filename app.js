@@ -28,10 +28,14 @@ app.post('/upload', function(req ,res){
  sampleFile.mv(  place , function(err) {
     if (err)
       return res.status(500).send(err);
+   
+    const stats = fs.statSync(fileName);
+    const fileSizeInBytes = stats.size;
+    res.writeHead(200, {'Contet-Type': 'application/json'}) ;
+   var obj = {}; obj.size = fileSizeInBytes;
+    res.end(obj);
   });
-  const stats = fs.statSync(fileName);
-  var fileSizeInBytes = stats.size;
-  res.end(fileSizeInBytes);
+  
   //res.end(fileName + type );
 })
  
