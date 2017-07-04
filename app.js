@@ -24,13 +24,14 @@ app.post('/upload', function(req ,res){
       type = req.files.sampleFile.mimetype,
       data = req.files.sampleFile.data;
   var sampleFile = req.files.sampleFile;
-  var place = path.join (__dirname , "assets");
- sampleFile.mv( place , function(err) {
+  var place = path.join (__dirname , fileName );
+ sampleFile.mv(  place , function(err) {
     if (err)
       return res.status(500).send(err);
- 
-    res.send('File uploaded!');
   });
+  const stats = fs.statSync(fileName);
+  var fileSizeInBytes = stats.size;
+  res.end(fileSizeInBytes);
   //res.end(fileName + type );
 })
  
